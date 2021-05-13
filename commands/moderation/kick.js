@@ -3,7 +3,7 @@ module.exports = {
     description: 'returns boop',
     guildOnly: true,
     permissions: 'KICK_MEMBERS',
-    execute(message, args) {
+    execute(message, args, Discord) {
         if (!message.mentions.users.size) {
             return message.reply(`you need to tag a user in order to kick them!`);
         }
@@ -12,9 +12,9 @@ module.exports = {
         if(!message.member.hasPermission("KICK_MEMBERS"))
           return message.reply('you don\'t have the permission to kick members!');
         let kickEmbed = new Discord.MessageEmbed()
-          .setDescription('Kick');
-          .setColor('#ff750c');
-          .setThumbnail(target.user.avatarURL());
+          .setDescription('Kick')
+          .setColor('#ff750c')
+          .setThumbnail(target.user.avatarURL())
           .setField(`User: ${target.username}, ID: ${target.id}`);
         message.guild.member(target).kick('FORCE!');
         message.delete();
