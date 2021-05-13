@@ -3,7 +3,7 @@ module.exports = {
     permissions: 'MANAGE_GUILD',
     asliases: ['um'],
     usage: '[mention]',
-    execute(message, args) {
+    async execute(message, args) {
         if (!message.mentions.users.size) {
             return message.reply(`you need to tag a user in order to mute them!`);
         }
@@ -12,7 +12,7 @@ module.exports = {
         let target = message.mentions.users.first();
 
         //if (target.roles.cache.has(role.id)) {
-          target.roles.add(role).catch(console.error);
+        await target.addRole(role);
         //} else {
         //  return message.reply(`you cannot unmute an unmuted user!`);
         //}

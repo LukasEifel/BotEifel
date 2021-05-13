@@ -60,12 +60,7 @@ client.on('message', message => {
     }
 
     try {
-        if(commandName !== 'disturb')
-            command.execute(message, args);
-        else if (commandName === 'disturb')
-            command.execute(message, args, client);
-        else if (commandName === 'kick')
-            command.execute(message, args, Discord);
+        command.execute(message, args);
     } catch (error) {
         console.error(error);
         message.reply('there was an error trying to execute that command!');
