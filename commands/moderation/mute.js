@@ -8,8 +8,8 @@ module.exports = {
             return message.reply(`you need to tag a user in order to mute them!`);
         }
 
-        const role = message.guild.roles.cache.find(role => role.name === 'Talkrecht');
-        const taggedUser = message.mentions.users.first();
+        let role = message.guild.roles.cache.find(role => role.name === 'Talkrecht');
+        let taggedUser = message.mentions.users.first();
 
         if(taggedUser.roles.cache.some(role => role.name === 'Talkrecht')) {
             taggedUser.roles.remove(role);
