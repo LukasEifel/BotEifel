@@ -7,12 +7,17 @@ module.exports = {
         if (!message.mentions.users.size) {
             return message.reply(`you need to tag a user in order to kick them!`);
         }
-        const member = message.mentions.users.first();
-        if (member.id != 416248905450389507) {
-            message.guild.members.kick(member);
-            return message.channel.send(`You wanted to kick: ${member.username}`);
-        } else {
-            console.reply(`you can't kick the developer of this bot!`);
-        }
+        const target = message.guild.member(message.mentions.users.first());
+        let kReason = args.join(' ').slice(22);
+        if(!message.member.hasPermission("KICK_MEMBERS"))
+          return message.reply('you don\'t have the permission to kick members!');
+        let kickEmbed = new Discord.MessageEmbed()
+          .setDescription('Kick');
+          .setColor('#ff750c');
+          .setThumbnail(target.user.avatarURL());
+          .setField(`User: ${target.username}, ID: ${target.id}`);
+        message.guild.member(target).kick('FORCE!');
+        message.delete();
+        message.channel.send(kickEmbed);
     },
 };
