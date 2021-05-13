@@ -12,7 +12,7 @@ module.exports = {
         let taggedUser = message.mentions.users.first();
 
         if(taggedUser.roles.cache.some(role => role.name === 'Talkrecht')) {
-            taggedUser.roles.remove(role);
+            taggedUser.roles.remove(role.id);
         } else {
             message.reply(`${taggeduser.username} is already muted!`);
         }

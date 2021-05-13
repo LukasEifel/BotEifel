@@ -12,7 +12,7 @@ module.exports = {
         let taggedUser = message.mentions.users.first();
 
         if(!taggedUser.roles.cache.some(role => role.name === 'Talkrecht')) {
-            taggedUser.roles.add(role);
+            taggedUser.roles.add(role.id);
         } else {
             message.reply(`${taggeduser.username} is already unmuted!`);
         }
