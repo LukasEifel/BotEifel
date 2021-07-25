@@ -5,7 +5,7 @@ module.exports = {
     name: 'kick',
     description: 'returns boop',
     guildOnly: true,
-    permissions: 'KICK_MEMBERS',
+    permissions: 'KICK_MEMBER',
     usage: '[mention]',
     execute(message, args) {
 
