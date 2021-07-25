@@ -1,13 +1,19 @@
+const { DiscordAPIError } = require("discord.js");
+
 module.exports = {
     name: 'avatar',
     aliases: ['icon', 'png'],
     execute(message, args) {
+        const Discord = require('./../../index.js').varToExport;
+
+        const embed = new Discord.MessageEmbed();
         if(!message.mentions.users.size) {
-            return message.channel.send(`Your avatar: <${message.author.displayAvatarURL({ format: `png`, dynamic: true })}>`);
+            embed.setImage(message.author.displayAvatarURL({ format: `png`, dynamic: true }));
         }
         const avatarList = message.mentions.users.map(user => {
-            return `${user.username}'s avatar: <${user.displayAvatarURL({ format: 'png', dynamic: true})}>`;
+            embed.setImage(user.displayAvatarURL({ format: 'png', dynamic: true}));
         });
+        message.channel.send(embed);
         message.channel.send(avatarList);
     },
 };
