@@ -21,8 +21,9 @@ for (const folder of commandFolders) {
 const running = true;
 
 client.once('ready', () => {
-    console.log(`[BOT] ONLINE: Logged in as ${client.user.tag}`);
-    console.log(`[BOT] PREFIX: ${prefix}`)
+    console.log(`[BOT] ONLINE:  Logged in as ${client.user.tag}`);
+    console.log(`[BOT] USER-ID: ${client.user.id}`);
+    console.log(`[BOT] PREFIX:  ${prefix}`);
 });
 
 client.on('message', message => {
