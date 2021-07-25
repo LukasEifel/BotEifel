@@ -5,11 +5,11 @@ module.exports = {
     name: 'kick',
     description: 'returns boop',
     guildOnly: true,
-    permissions: 'ADMINISTRATOR',
+    permissions: 'KICK_MEMBERS',
     usage: '[mention]',
     execute(message, args) {
-        if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send('**You do not have permissions to kick members! - [KICK_MEMBERS]**');
-        if (!message.guild.me.hasPermission('KICK_MEMBERS')) return message.channel.send('**I do not have permissions to kick members! - [KICK_MEMBERS]**');
+
+        //message.channel.send('[DEBUG] ' + message.member.hasPermission('KICK_MEMBER'));
 
         if (!args[0]) return message.channel.send('**Enter a user to kick!**');
 
@@ -34,12 +34,12 @@ module.exports = {
           }
           if (reason) {
             var sembed = new MessageEmbed()
-              .setColor('GREEN')
+              .setColor('RED')
               .setDescription('**${kickMember.user.username}** has been kicked for ${reason}!');
             message.channel.send(sembed);
           } else {
             var sembed2 = new MessageEmbed()
-              .setColor('GREEN')
+              .setColor('RED')
               .setDescription('**${kickMember.user.username}** has been kicked!');
             message.channel.send(sembed2);
           }
