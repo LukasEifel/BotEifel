@@ -8,12 +8,16 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed();
         if(!message.mentions.users.size) {
+            embed.setTitle(message.author.tag);
             embed.setImage(message.author.displayAvatarURL({ format: `png`, dynamic: true }));
+            embed.setURL(message.author.displayAvatarURL({ format: `png`, dynamic: true }));
+        } else {
+            message.mentions.users.map(user => {
+                embed.setTitle(user.tag);
+                embed.setImage(user.displayAvatarURL({ format: 'png', dynamic: true}));
+                embed.setURL(user.displayAvatarURL({ format: 'png', dynamic: true}));
+            });
         }
-        const avatarList = message.mentions.users.map(user => {
-            embed.setImage(user.displayAvatarURL({ format: 'png', dynamic: true}));
-        });
         message.channel.send(embed);
-        message.channel.send(avatarList);
     },
 };
