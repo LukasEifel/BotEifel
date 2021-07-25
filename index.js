@@ -50,13 +50,13 @@ client.on('message', message => {
     if (command.permissions) {
         const authorPerms = message.channel.permissionsFor(message.author);
         if (!authorPerms || !authorPerms.has(command.permissions)) {
-            return message.reply('You can not do this! You need the following permissions: ' +
+            return message.reply('**you can not do this! You need the following permissions: **' +
             command.permissions);
         }
     }
 
     if (command.args && !args.length) {
-        let reply = `You didn't provide any arguments, ${message.author}!`;
+        let reply = `you did not provide any arguments, ${message.author}!`;
         if (command.usage) {
             reply += `\nThe proper usage would be: \`${prefix}${command.name}${command.usage}\``;
         }
