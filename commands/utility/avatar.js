@@ -2,6 +2,7 @@ const { DiscordAPIError } = require("discord.js");
 
 module.exports = {
     name: 'avatar',
+    description: 'send avatar-URL',
     aliases: ['icon', 'png'],
     execute(message, args) {
         const Discord = require('./../../index.js').varToExport;
