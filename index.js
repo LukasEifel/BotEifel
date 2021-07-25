@@ -4,6 +4,7 @@ module.exports = {varToExport: Discord};
 const { prefix, token } = require(`./config.json`);
 
 const client = new Discord.Client();
+module.exports = {client: client};
 
 client.commands = new Discord.Collection();
 

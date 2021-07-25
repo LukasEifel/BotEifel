@@ -8,6 +8,7 @@ module.exports = {
     permissions: 'KICK_MEMBERS',
     usage: '[mention]',
     execute(message, args) {
+      const client = require('./../../index.js').client;
 
         //message.channel.send('[DEBUG] ' + message.member.hasPermission('KICK_MEMBER'));
 
@@ -32,16 +33,20 @@ module.exports = {
           } catch {
             kickMember.kick();
           }
+
+          const welcomeChannel = client.channels.cache.find(channel => channel.name === 'allgemein' || channel.name === 'general');
           if (reason) {
             var sembed = new MessageEmbed()
               .setColor('RED')
               .setDescription('**${kickMember.user.username}** has been kicked for ${reason}!');
             message.channel.send(sembed);
+            welcomeChannel.send(sembed);
           } else {
             var sembed2 = new MessageEmbed()
               .setColor('RED')
               .setDescription('**${kickMember.user.username}** has been kicked!');
             message.channel.send(sembed2);
+            welcomeChannel.send(sembed);
           }
     },
 };
