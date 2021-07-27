@@ -1,24 +1,24 @@
-const { DiscordAPIError } = require("discord.js");
+const { DiscordAPIError } = require(`discord.js`);
 
 module.exports = {
     name: 'avatar',
     description: 'send avatar-URL',
     aliases: ['icon', 'png'],
-    execute(message, args) {
-        const Discord = require('./../../index.js').varToExport;
+    execute(msg, args) {
+        const Discord = require(`discord.js`);
 
         const embed = new Discord.MessageEmbed();
-        if(!message.mentions.users.size) {
-            embed.setTitle(message.author.tag);
-            embed.setImage(message.author.displayAvatarURL({ format: `png`, dynamic: true }));
-            embed.setURL(message.author.displayAvatarURL({ format: `png`, dynamic: true }));
+        if(!msg.mentions.users.size) {
+            embed.setTitle(msg.author.tag);
+            embed.setImage(msg.author.displayAvatarURL({ format: `png`, dynamic: true }));
+            embed.setURL(msg.author.displayAvatarURL({ format: `png`, dynamic: true }));
         } else {
-            message.mentions.users.map(user => {
+            msg.mentions.users.map(user => {
                 embed.setTitle(user.tag);
-                embed.setImage(user.displayAvatarURL({ format: 'png', dynamic: true}));
-                embed.setURL(user.displayAvatarURL({ format: 'png', dynamic: true}));
+                embed.setImage(user.displayAvatarURL({ format: `png`, dynamic: true}));
+                embed.setURL(user.displayAvatarURL({ format: `png`, dynamic: true}));
             });
         }
-        message.channel.send(embed);
+        msg.channel.send(embed);
     },
 };

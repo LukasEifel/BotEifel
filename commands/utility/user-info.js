@@ -1,20 +1,20 @@
-const avatar = require("./avatar");
+const avatar = require(`./avatar`);
 
 module.exports = {
     name: 'user-info',
     description: '',
-    execute(message, args) {
-        avatar.execute(message, args);
-        if(!message.mentions.users.size) {
-            message.channel.send(`Username: ${message.author.username}\n` +
-            `Nickname: ${message.author}\n` +
-            `Tag: ${message.author.tag}\n` +
-            `ID: ${message.author.id}`);
+    execute(msg, args) {
+        avatar.execute(msg, args);
+        if(!msg.mentions.users.size) {
+            msg.channel.send(`Username: ${msg.author.username}\n` +
+            `Nickname: ${msg.author}\n` +
+            `Tag: ${msg.author.tag}\n` +
+            `ID: ${msg.author.id}`);
         } else {
-            message.channel.send(`Username: ${message.mentions.members.first().user.username}\n` +
-            `Nickname: ${message.mentions.members.first()}\n` +
-            `Tag: ${message.mentions.members.first().user.tag}\n` +
-            `ID: ${message.mentions.members.first().id}`);
+            msg.channel.send(`Username: ${msg.mentions.members.first().user.username}\n` +
+            `Nickname: ${msg.mentions.members.first()}\n` +
+            `Tag: ${msg.mentions.members.first().user.tag}\n` +
+            `ID: ${msg.mentions.members.first().id}`);
         }
     },
 };

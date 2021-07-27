@@ -1,21 +1,20 @@
-const { MessageEmbed } = require('discord.js');
+const { Console } = require('console');
+const { MessageEmbed, SystemChannelFlags } = require('discord.js');
 
 module.exports = {
     name: 'spam',
     guildOnly: false,
+    usage: '[amount] [mention]',
+    args: true,
+    cooldown: 0,
     execute(message, args) {
-        const client = require('../../index.js').client;
+        const client = require('../../bot').client;
 
-        if (!args[0]) return message.channel.send('**Enter a amount of spam messages to spam!**');
-        if (!args[1]) return message.channel.send('**Enter a user to spam!**');
-
-        message.channel.send(`${parseInt(args[1])} wird gespammt!`);
-
-        console.log('[DEBUG] ' + parseInt(args[0]));
-        console.log('[DEBUG] ' + args[1]);
+        //console.log("[DEBUG] amount: " + args[0]);
+        //console.log("[DEBUG] id: " + args[1]);
 
         for (i = 0; i < parseInt(args[0]); i++) {
-            client.users.cache.get(args[1]).send('I spam you!');
+            client.users.cache.get(args[1].replace(/[^0-9]/g, '')).send('SPAM');
         }
     },
 };
