@@ -20,7 +20,7 @@ module.exports = async function (msg) {
     const args = msg.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
-    console.log(client.commands.has(commandName));
+    //console.log(client.commands.has(commandName));
 
     if (!client.commands.has(commandName)) return;
 
