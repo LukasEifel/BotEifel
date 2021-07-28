@@ -20,9 +20,14 @@ module.exports = async function (msg) {
     const args = msg.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
-    //console.log(client.commands.has(commandName));
+    if (msg.author.id == "841726953354297354") {
+        console.log(`${msg.client.username} in ${msg.channel.id} sent: ${msg.content}`);
+    }
 
     if (!client.commands.has(commandName)) return;
+
+    console.log(`${msg.author.username}(${msg.author.id}) in ${msg.channel.id} sent: ${msg.content}`);
+    //console.log(client.commands.has(commandName));
 
     const command = client.commands.get(commandName)
         || client.command.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
