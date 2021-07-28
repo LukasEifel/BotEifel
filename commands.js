@@ -58,9 +58,9 @@ module.exports = async function (msg) {
     }
 
     if (command.args && !args.length) {
-        let reply = "you did not provide any arguments, ${msg.author}!";
+        let reply = `You did not provide any arguments, ${msg.author}.`;
         if (command.usage) {
-            reply += "\nThe proper usage would be: \"${prefix}${command.name} ${command.usage}\"";
+            reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
         }
         return msg.channel.send(reply);
     }
