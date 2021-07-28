@@ -5,4 +5,5 @@ package-lock.json
 
 config.json
 
+# discord-prefix specific #
 prefixes.db
