@@ -1,4 +1,3 @@
 {
-    "prefix": "-", #OPTINAL Prefix for all commands, default to colon
     "token":"INSERT BOT TOKEN HERE"
 }
