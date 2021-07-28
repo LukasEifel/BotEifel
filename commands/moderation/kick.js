@@ -6,9 +6,8 @@ module.exports = {
     description: 'returns boop',
     guildOnly: true,
     permissions: 'KICK_MEMBERS',
-    usage: '[mention]',
+    usage: '<mention user>',
     execute(message, args) {
-      const client = require('./../../index.js').client;
 
         //message.channel.send('[DEBUG] ' + message.member.hasPermission('KICK_MEMBER'));
 
@@ -34,7 +33,7 @@ module.exports = {
             kickMember.kick();
           }
 
-          const welcomeChannel = client.channels.cache.find(channel => channel.name === 'allgemein' || channel.name === 'general');
+          const welcomeChannel = msg.client.channels.cache.find(channel => channel.name === 'allgemein' || channel.name === 'general');
           if (reason) {
             var sembed = new MessageEmbed()
               .setColor('RED')

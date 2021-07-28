@@ -4,6 +4,7 @@ const prefix = require('discord-prefix');
 const client = require('./index').client;
 
 client.commands = new Discord.Collection();
+client.cooldowns = new Discord.Collection();
 
 const commandFolders = fs.readdirSync(`./commands`);
 
@@ -34,13 +35,13 @@ module.exports = async function (msg) {
         console.log(`${msg.client.username} in ${msg.channel.id} sent: ${msg.content}`);
     }
 
-    if (!client.commands.has(commandName)) return;
+    if (!msg.client.commands.has(commandName)) return;
 
     console.log(`${msg.author.username}(${msg.author.id}) in ${msg.channel.id} sent: ${msg.content}`);
     //console.log(client.commands.has(commandName));
 
-    const command = client.commands.get(commandName)
-        || client.command.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+    const command = msg.client.commands.get(commandName)
+        || msg.client.command.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
     if (!command) return;
 
@@ -66,8 +67,8 @@ module.exports = async function (msg) {
 
     try {
         command.execute(msg, args);
-    } catch (error) {
-        console.error(error);
+    } catch (err) {
+        console.error(err);
         msg.reply("there was an error trying to execute that command!");
     }
 }
