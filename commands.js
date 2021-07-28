@@ -1,8 +1,7 @@
 const fs = require('fs');
-const Discord = require(`discord.js`);
-const { prefix } = require("./config.json");
-//const Discord = require("./bot").D;
-const client = require("./bot").client;
+const Discord = require('discord.js');
+const prefix = require('discord-prefix');
+const client = require('./bot').client;
 
 client.commands = new Discord.Collection();
 
@@ -17,7 +16,18 @@ for (const folder of commandFolders) {
 }
 
 module.exports = async function (msg) {
-    const args = msg.content.slice(prefix.length).trim().split(/ +/);
+    let guildPrefix;
+    try {
+        guildPrefix = prefix.getPrefix(msg.guild.id);
+
+        if (!guildPrefix) guildPrefix = prefix.getPrefix();
+    } catch {
+        guildPrefix = prefix.getPrefix();
+    }
+
+    if (!msg.content.startsWith(guildPrefix)) return;
+
+    const args = msg.content.slice(guildPrefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
     if (msg.author.id == "841726953354297354") {

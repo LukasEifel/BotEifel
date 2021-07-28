@@ -1,6 +1,7 @@
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
-const { prefix, token } = require(`./config.json`);
+const { token } = require(`./config.json`);
+const prefix = require('discord-prefix');
 
 module.exports = {D: Discord};
 module.exports = {client: client};
@@ -10,7 +11,8 @@ client.once('ready', readyDiscord);
 function readyDiscord() {
     console.log(`[BOT] ONLINE:  Logged in as ${client.user.tag}`);
     console.log(`[BOT] USER-ID: ${client.user.id}`);
-    console.log(`[BOT] PREFIX:  ${prefix}`);
+    prefix.setPrefix('-');
+    console.log(`[BOT] PREFIX:  ${prefix.getPrefix()}`);
 }
 
 const commandHandler = require("./commands")
