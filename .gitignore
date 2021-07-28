@@ -6,4 +6,5 @@ package-lock.json
 config.json
 
 # discord-prefix specific #
+json.sqlite
 prefixes.db
