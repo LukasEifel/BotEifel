@@ -25,7 +25,7 @@ module.exports = async function (msg) {
         guildPrefix = prefix.getPrefix();
     }
 
-    if (!msg.content.startsWith(guildPrefix)) return;
+    if (!msg.content.startsWith(guildPrefix) || msg.author.bot) return;
 
     const args = msg.content.slice(guildPrefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
