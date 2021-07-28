@@ -3,6 +3,7 @@ const { messageEmbed, SystemChannelFlags } = require('discord.js');
 
 module.exports = {
     name: 'spam',
+    description: 'Spam a discord user of your choice',
     guildOnly: false,
     usage: '[amount] [mention]',
     args: true,
@@ -10,8 +11,8 @@ module.exports = {
     execute(msg, args) {
         const client = require('../../bot').client;
 
-        //console.log("[DEBUG] amount: " + args[0]);
-        //console.log("[DEBUG] id: " + args[1]);
+        //console.log("[DEBUG] args[0]: " + args[0]);
+        //console.log("[DEBUG] args[1]: " + args[1]);
 
         if (args.length === 2) {
             for (i = 0; i < parseInt(args[0]); i++) {
@@ -23,10 +24,10 @@ module.exports = {
                 spamMsg = args.join(" ");
                 spamMsg = spamMsg.replace(args[0], "");
                 spamMsg = spamMsg.replace(args[1], "");
-                //console.log(spamMsg);
+                //console.log("[DEBUG] spamMsg: "+ spamMsg);
                 client.users.cache.get(args[1].replace(/[^0-9]/g, '')).send(spamMsg);
             }
         }
-        msg.channel.send(msg.mentions.users.first().name + ` wird gespammt! Herzlichen Glückwunsch!`);
+        msg.channel.send(`${msg.mentions.users.first().username} wird gespammt. Herzlichen Glückwunsch!`);
     },
 };
