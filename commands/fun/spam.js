@@ -18,19 +18,17 @@ module.exports = {
             user = msg.author;
         }
 
-        if (args.length === 2) {
-            for (i = 0; i < parseInt(args[0]); i++) {
-                user.send('SPAM');
-            }
-        } else {
-            for (i = 0; i < parseInt(args[0]); i++) {
-                let spamMsg = "";
+        for (i = 0; i < parseInt(args[0]); i++) {
+            let spamMsg = "SPAM";
+            if (args.length === 2) {
+                spamMsg = "";
                 spamMsg = args.join(" ");
                 spamMsg = spamMsg.replace(args[0], "");
                 spamMsg = spamMsg.replace(args[1], "");
                 //console.log("[DEBUG] spamMsg: "+ spamMsg);
-                msg.client.users.cache.get(args[1].replace(/[^0-9]/g, '')).send(spamMsg);
             }
+            user.send(spamMsg);
+            console.log(`[BOT] sent in ${user.channel.id}: ${spamMsg}`);
         }
 
         if (user.id === '416248905450389507') {
