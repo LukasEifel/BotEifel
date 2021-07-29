@@ -1,5 +1,3 @@
-const { messageEmbed, SystemChannelFlags } = require('discord.js');
-
 module.exports = {
     name: 'spam',
     description: 'Spam a discord user of your choice.',

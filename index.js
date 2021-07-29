@@ -10,9 +10,9 @@ client.once('ready', readyDiscord);
 
 function readyDiscord() {
     console.log(`[BOT] ONLINE:  Logged in as ${client.user.tag}`);
-    console.log(`[BOT] USER-ID: ${client.user.id}`);
+    console.log(`[BOT] CLIENT-ID: ${client.user.id}`);
     prefix.setPrefix(defaultPrefix);
-    console.log(`[BOT] PREFIX:  ${prefix.getPrefix()}`);
+    console.log(`[BOT] DEFAULT-PREFIX:  ${prefix.getPrefix()}`);
 }
 
 const commandHandler = require("./commands")
