@@ -14,7 +14,7 @@ module.exports = {
         for (i = 0; i < amount; i++) {
             var number = Math.floor(Math.random() * 4) + 1;
 
-            console.log("[DEBUG] " + number);
+            //console.log("[DEBUG] " + number);
             if (number === 1) msg.guild.members.cache.get(user.id).voice.setMute(false);
             if (number === 2) msg.guild.members.cache.get(user.id).voice.setMute(true);
             if (number === 3) msg.guild.members.cache.get(user.id).voice.setDeaf(false);

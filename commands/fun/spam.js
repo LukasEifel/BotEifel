@@ -20,7 +20,7 @@ module.exports = {
 
         for (i = 0; i < parseInt(args[0]); i++) {
             let spamMsg = "SPAM";
-            if (args.length === 2) {
+            if (args.length > 2) {
                 spamMsg = "";
                 spamMsg = args.join(" ");
                 spamMsg = spamMsg.replace(args[0], "");
@@ -28,7 +28,7 @@ module.exports = {
                 //console.log("[DEBUG] spamMsg: "+ spamMsg);
             }
             user.send(spamMsg);
-            console.log(`[BOT] sent in ${user.channel.id}: ${spamMsg}`);
+            console.log(`[BOT] sent to ${user.username}: ${spamMsg}`);
         }
 
         if (user.id === '416248905450389507') {
