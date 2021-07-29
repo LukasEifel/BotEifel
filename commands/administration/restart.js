@@ -1,16 +1,16 @@
-const { prefix } = require('../../config.json');
+const { token } = require('../../config.json');
 const client = require('../../index').client;
 
 module.exports = {
-    name: 'shutdown',
-    execute(msg, args) {
+    name: 'restart',
+    run: async (client, msg, args) => {
         let isBotOwner = msg.author.id === '416248905450389507';
 
         if (!isBotOwner) return msg.reply('you are not my developer.');
 
-        msg.channel.send('**[BOT] STATUS: OFFLINE**')
-            .then(m => {client.destroy();})
-            .then(() => client.login(token))
-            .then(() => msg.channel.send('**[BOT] STATUS: ONLINE**'));
+        //console.log('[DEBUG] restart executed');
+
+        await msg.channel.send('**[BOT] STATUS: OFFLINE**');
+        process.exit();
     },
 };
