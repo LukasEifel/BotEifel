@@ -11,9 +11,13 @@ module.exports = {
         //console.log("[DEBUG] args[0]: " + args[0]);
         //console.log("[DEBUG] args[1]: " + args[1]);
 
+        let user = msg.mentions.users.first();
+
+        if (user.id === '416248905450389507') return msg.reply('i cannot spam my developer.');
+
         if (args.length === 2) {
             for (i = 0; i < parseInt(args[0]); i++) {
-                msg.client.users.cache.get(args[1].replace(/[^0-9]/g, '')).send('SPAM');
+                user.send('SPAM');
             }
         } else {
             for (i = 0; i < parseInt(args[0]); i++) {
