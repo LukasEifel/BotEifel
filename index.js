@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
-const { defaultPrefix, token } = require('./config.json');
+const { defaultPrefix } = require('./config.json');
 const prefix = require('discord-prefix');
 
 module.exports = {D: Discord};
@@ -19,4 +19,4 @@ const commandHandler = require("./commands")
 
 client.on("message", commandHandler);
 
-client.login(token);
+client.login(process.env.TOKEN);
