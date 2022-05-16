@@ -4,6 +4,7 @@
 package-lock.json
 
 config.json
+.env
 
 # discord-prefix specific #
 json.sqlite
