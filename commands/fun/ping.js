@@ -5,6 +5,7 @@ module.exports = {
     permissions: 'SEND_MESSAGE',
     guildOnly: false,
     execute(message, args) {
-        message.channel.send(`pong`);
+        const delay = -(Date.now() - message.createdAt)
+        message.channel.send(`**pong** *(DELAY: ${delay}ms)*`);
     },
 };
