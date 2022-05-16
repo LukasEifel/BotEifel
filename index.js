@@ -1,6 +1,7 @@
+require('dotenv').config()
+
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
-const { defaultPrefix } = require('./config.json');
 const prefix = require('discord-prefix');
 
 module.exports = {D: Discord};
@@ -11,7 +12,7 @@ client.once('ready', readyDiscord);
 function readyDiscord() {
     console.log(`[BOT] ONLINE:  Logged in as ${client.user.tag}`);
     console.log(`[BOT] CLIENT-ID: ${client.user.id}`);
-    prefix.setPrefix(defaultPrefix);
+    prefix.setPrefix(process.env.DEFAULT_PREFIX);
     console.log(`[BOT] DEFAULT-PREFIX:  ${prefix.getPrefix()}`);
 }
 
