@@ -1,23 +1,37 @@
-require('dotenv').config()
+const fs = require('node:fs');
+const path = require('node:path');
+const { Client, Intents, Collection } = require(`discord.js`);
+const { token, defaultPrefix } = require('./config.json');
 
-const Discord = require(`discord.js`);
-const client = new Discord.Client();
-const prefix = require('discord-prefix');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-module.exports = {D: Discord};
-module.exports = {client: client};
+client.commands = new Collection();
+const commandsPath = path.join(__dirname, 'commands');
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+
+    client.commands.set(command.data.name, command);
+}
 
 client.once('ready', readyDiscord);
 
 function readyDiscord() {
     console.log(`[BOT] ONLINE:  Logged in as ${client.user.tag}`);
     console.log(`[BOT] CLIENT-ID: ${client.user.id}`);
-    prefix.setPrefix(process.env.DEFAULT_PREFIX);
-    console.log(`[BOT] DEFAULT-PREFIX:  ${prefix.getPrefix()}`);
 }
 
-const commandHandler = require("./commands")
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
 
-client.on("message", commandHandler);
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+    }
+});
 
-client.login(process.env.TOKEN);
+client.login(token);

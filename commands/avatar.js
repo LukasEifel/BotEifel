@@ -1,8 +1,10 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
-    name: 'avatar',
-    description: 'send avatar-URL',
-    aliases: ['icon', 'png'],
-    execute(msg, args) {
+    data: new SlashCommandBuilder()
+        .setName('avatar')
+        .setDescription('send avatar-URL'),
+    async execute(msg, args) {
         const Discord = require(`discord.js`);
 
         const embed = new Discord.MessageEmbed();

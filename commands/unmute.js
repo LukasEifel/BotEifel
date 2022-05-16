@@ -1,10 +1,9 @@
-const Discord = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
-    name: 'unmute',
-    permissions: 'MUTE_MEMBERS',
-    args: true,
-    execute(msg, args) {
+    data: new SlashCommandBuilder()
+        .setName('unmute'),
+    async execute(msg, args) {
         let reason = args.slice(1).join(' ');
         let user = msg.mentions.users.first();
 

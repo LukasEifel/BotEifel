@@ -1,11 +1,11 @@
 const prefix = require('discord-prefix');
 
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
-    name: 'setprefix',
-    guildOnly: true,
-    args: true,
-    permissions: 'ADMINISTRATOR',
-    execute(msg, args) {
+    data: new SlashCommandBuilder()
+        .setName('setprefix'),
+    async execute(msg, args) {
         try {
             const guildId = msg.guild.id;
             const guildPrefix = args[0];

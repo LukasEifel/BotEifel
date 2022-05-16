@@ -1,8 +1,9 @@
-const client = require('../../index').client;
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
-    name: 'shutdown',
-    execute(msg, args) {
+    data: new SlashCommandBuilder()
+        .setName('shutdown'),
+    async execute(msg, args) {
         let isBotOwner = msg.author.id === '416248905450389507';
 
         if (!isBotOwner) return msg.reply('you are not my developer.');

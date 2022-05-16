@@ -1,10 +1,11 @@
 const fs = require('fs');
 
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
-    name: 'reload',
-    description: 'Reloads a command',
-    args: true,
-    execute(msg, args) {
+    data: new SlashCommandBuilder()
+        .setName('reload'),
+    async execute(msg, args) {
         const commandName = args[0].toLowerCase();
         const command = msg.client.commands.get(commandName)
             || msg.client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));

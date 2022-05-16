@@ -1,10 +1,12 @@
 const avatar = require(`./avatar`);
 const moment = require('moment');
 
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
-    name: 'user-info',
-    description: '',
-    execute(msg, args) {
+    data: new SlashCommandBuilder()
+        .setName('user-info'),
+    async execute(msg, args) {
         avatar.execute(msg, args);
         
         let user;

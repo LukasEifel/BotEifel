@@ -1,11 +1,9 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
-    name: 'spam',
-    description: 'Spam a discord user of your choice.',
-    guildOnly: false,
-    usage: '[amount] [mention]',
-    args: true,
-    cooldown: 10,
-    execute(msg, args) {
+    data: new SlashCommandBuilder()
+        .setName('spam'),
+    async execute(msg, args) {
         //console.log("[DEBUG] args[0]: " + args[0]);
         //console.log("[DEBUG] args[1]: " + args[1]);
 
