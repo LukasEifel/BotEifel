@@ -2,8 +2,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('spam'),
-    async execute(msg, args) {
+        .setName('spam')
+        .setDescription('Replies with pong!'),
+    async execute(interaction) {
         //console.log("[DEBUG] args[0]: " + args[0]);
         //console.log("[DEBUG] args[1]: " + args[1]);
 

@@ -4,7 +4,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('beep')
         .setDescription('returns boop'),
-    async execute(message, args) {
+    async execute(interaction) {
         message.channel.send(`boop`)
     },
 };

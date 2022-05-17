@@ -4,8 +4,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('reload'),
-    async execute(msg, args) {
+        .setName('reload')
+        .setDescription('Replies with pong!'),
+    async execute(interaction) {
         const commandName = args[0].toLowerCase();
         const command = msg.client.commands.get(commandName)
             || msg.client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));

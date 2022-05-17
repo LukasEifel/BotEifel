@@ -2,8 +2,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('clear'),
-    async execute(msg, args) {
+        .setName('clear')
+        .setDescription('Replies with pong!'),
+    async execute(interaction) {
         let amount = parseInt(args[0]) + 1;
 
         if (isNaN(amount)) {

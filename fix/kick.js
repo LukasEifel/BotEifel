@@ -1,11 +1,10 @@
-const db = require('quick.db');
-
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('kick'),
-    async execute(msg, args) {
+        .setName('kick')
+        .setDescription('Replies with pong!'),
+    async execute(interaction) {
       let reason = args.slice(1).join(' ');
       let user = msg.mentions.users.first();
 

@@ -5,9 +5,10 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('user-info'),
-    async execute(msg, args) {
-        avatar.execute(msg, args);
+        .setName('user-info')
+        .setDescription('Replies with pong!'),
+    async execute(interaction) {
+        avatar.execute(interaction);
         
         let user;
         if (msg.mentions.users.first()) {

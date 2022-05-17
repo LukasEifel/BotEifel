@@ -2,8 +2,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('mute'),
-    async execute(msg, args) {
+        .setName('mute')
+        .setDescription('Replies with pong!'),
+    async execute(interaction) {
         let reason = args.slice(1).join(' ');
         let user = msg.mentions.users.first();
 
