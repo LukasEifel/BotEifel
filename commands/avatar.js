@@ -9,7 +9,7 @@ module.exports = {
     async execute(client, interaction) {
 
         function getUserFromMention(mention) {
-            const matches = mention.matchAll(USERS_PATTERN).next().value;
+            const matches = mention.match(USERS_PATTERN);
         
             if (!matches) return;
         
@@ -17,6 +17,7 @@ module.exports = {
             return client.users.cache.get(id);
         }
 
+        const username = getUserFromMention(interaction.options.value);
 
         const embed = new MessageEmbed();
         if(!interaction.mentions.user) {
@@ -24,7 +25,7 @@ module.exports = {
             embed.setImage(msg.author.displayAvatarURL({ format: 'png', dynamic: true }));
             embed.setURL(msg.author.displayAvatarURL({ format: 'png', dynamic: true }));
         } else {
-            interaction.mentions.users.map(user => {
+            interaction.mentions.user.map(user => {
                 embed.setTitle(user.tag);
                 embed.setImage(user.displayAvatarURL({ format: 'png', dynamic: true}));
                 embed.setURL(user.displayAvatarURL({ format: 'png', dynamic: true}));
