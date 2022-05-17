@@ -17,18 +17,19 @@ module.exports = {
             return client.users.cache.get(id);
         }
 
-        const embed = MessageEmbed();
-        if(!msg.mentions.users.size) {
+
+        const embed = new MessageEmbed();
+        if(!interaction.mentions.user) {
             embed.setTitle(msg.author.tag);
             embed.setImage(msg.author.displayAvatarURL({ format: 'png', dynamic: true }));
             embed.setURL(msg.author.displayAvatarURL({ format: 'png', dynamic: true }));
         } else {
-            msg.mentions.users.map(user => {
+            interaction.mentions.users.map(user => {
                 embed.setTitle(user.tag);
                 embed.setImage(user.displayAvatarURL({ format: 'png', dynamic: true}));
                 embed.setURL(user.displayAvatarURL({ format: 'png', dynamic: true}));
             });
         }
-        msg.channel.send(embed);
+        await interaction.reply({ embed: [embed] });
     },
 };
